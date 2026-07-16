@@ -42,15 +42,36 @@ An interactive, full-stack quiz management and assessment platform designed to f
 Redis is required as the Flask Cache backend, Celery Message Broker, and Celery Result Backend.
 Ensure Redis is installed and running on default port `6379`:
 ```bash
-# On macOS via Homebrew
+# On macOS via Homebrew (install first if not already installed)
+brew install redis
+
+# Start the Redis service in the background
 brew services start redis
 ```
 
 ### 2. Mock SMTP Mail Server
-For receiving monthly reports locally, run a test SMTP server on port `1025`. You can use Python's built-in SMTP debugger or tools like [Mailpit](https://github.com/axllent/mailpit) / [MailHog](https://github.com/mailhog/MailHog).
+For receiving monthly reports locally, run a test SMTP server on port `1025`. 
+
+*(Note: The built-in `smtpd` Python module has been removed in Python 3.12+. Use one of the modern options below:)*
+
+#### Option A: Using Mailpit (Recommended)
+Mailpit is a fast, modern email testing tool that acts as an SMTP server and provides a web interface to inspect sent emails.
 ```bash
-# Python built-in SMTP debugging server
-python3 -m smtpd -c DebuggingServer -n localhost:1025
+# Install Mailpit via Homebrew
+brew install mailpit
+
+# Run Mailpit (SMTP server runs on localhost:1025, Web UI on http://localhost:8025)
+mailpit
+```
+
+#### Option B: Using `aiosmtpd`
+An asyncio-based SMTP server for Python 3.
+```bash
+# Install the package
+pip install aiosmtpd
+
+# Run SMTP server on port 1025
+aiosmtpd -n -l localhost:1025
 ```
 
 ### 3. Backend Setup (Flask & Celery)
