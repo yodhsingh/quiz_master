@@ -1,0 +1,51 @@
+# Byte-compiled / optimized / DLL files
+**/__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
+.venv/
+venv/
+env/
+ENV/
+
+# Database files & Instance configuration
+*.db
+*.sqlite
+backend/instance/
+backend/quizmaster.db
+
+# Static generated files (e.g. CSV exports)
+backend/static/*.csv
+
+# Celery
+celerybeat-schedule*
+celerybeat.pid
+
+# OS files
+.DS_Store
+.DS_Store?
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.suo
+*.sw?
+
+# --- Frontend (Node / Vue) ---
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+
+# Node logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Local environment files
+.env
+.env.local
+.env.*.local
